@@ -41,12 +41,16 @@
       <Position>6</Position>
       <DataType>BIGINT(19)|-5s</DataType>
     </column>
-    <index id="12" parent="5" name="PRIMARY_KEY_27">
+    <column id="12" parent="5" name="BIO">
+      <Position>7</Position>
+      <DataType>VARCHAR(256)|12s</DataType>
+    </column>
+    <index id="13" parent="5" name="PRIMARY_KEY_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="13" parent="5" name="CONSTRAINT_2">
+    <key id="14" parent="5" name="CONSTRAINT_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

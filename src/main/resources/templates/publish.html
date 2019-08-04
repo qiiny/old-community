@@ -8,7 +8,9 @@
     <link rel="icon" type="image/x-icon" href="../static/images/ico.ico" />
     <script src="../static/js/jquery-3.4.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
-
+<script>
+    var i="请登录";
+</script>
 
 </head>
 <body style="background-color: #f4f4f4">
@@ -47,9 +49,8 @@
     <div class="container-fluid" style="background-color: #ffffff; margin: 30px">
         <div class="row">
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                <hr/>
-                <form action="#">
+                <h1><span class="glyphicon glyphicon-plus" aria-hidden="true">发布</span></h1>
+                <form action="/publish" method="post">
                     <div class="from-group">
                         <label for="title">标题</label>
                         <input type="text" class="form-control" id="title" placeholder="标题" name="title">
@@ -62,6 +63,7 @@
                         <label for="tag">标签</label>
                         <input type="text" class="form-control" id="tag" placeholder="标签" name="tag">
                     </div>
+                    <span onclick="window.alert(i)" th:text="${error}" th:if="${error}!=null" ></span>
                     <div style="float: right;margin: 10px 5px 0 0"><button type="submit" class="btn btn-success">提交</button></div>
                 </form>
             </div>

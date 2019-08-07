@@ -33,6 +33,21 @@ public class PublishController {
     @PostMapping("/publish")
     public String doPublish(@RequestParam("title") String title, @RequestParam("description") String description,
             @RequestParam("tag") String tag, HttpServletRequest request, Model model){
+        model.addAttribute("title",title);
+        model.addAttribute("tag",tag);
+        model.addAttribute("description",description);
+        if ("".equals(title.trim())){
+            model.addAttribute("error","请输入标题");
+            return "publish";
+        }
+        if ("".equals(description.trim())){
+            model.addAttribute("error","请输入内容");
+            return "publish";
+        }
+        if ("".equals(tag.trim())){
+            model.addAttribute("error","请输入标签");
+            return "publish";
+        }
         Cookie[] cookies = request.getCookies();
         User user = null;
         for (Cookie cookie : cookies) {

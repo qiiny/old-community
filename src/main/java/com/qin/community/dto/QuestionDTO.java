@@ -1,15 +1,16 @@
-package com.qin.community.model;
+package com.qin.community.dto;
 
+import com.qin.community.model.User;
 import lombok.Data;
 
 /**
  * @program: community
- * @description: 发布问题
+ * @description: 获取发布数据的DTO层
  * @author: qin
- * @create: 2019-08-04 15:09
+ * @create: 2019-08-09 17:39
  **/
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -20,4 +21,5 @@ public class Question {
     private Integer view_count;
     private Integer like_count;
     private String tag;
+    private User user;
 }

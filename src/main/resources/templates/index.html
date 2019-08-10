@@ -10,16 +10,16 @@
     <link rel="icon" href="../static/images/ico.ico">
 
 </head>
-<body>
+<body style="background-color: #e1c8da">
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">项目社区</span>
+                <a href="/"> <span class="sr-only">项目社区</span></a>
             </button>
-            <a class="navbar-brand" href="#">项目社区</a>
+            <a class="navbar-brand" href="/">项目社区</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -45,6 +45,43 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-    <h1>hello</h1>
+<div class="container-fluid" style="background-color: #ffffff; margin: 0 60px 0 60px">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h3><span class="glyphicon glyphicon-th-list" aria-hidden="true">标题</span></h3><hr>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="img-circle" src="https://avatars3.githubusercontent.com/u/41497069?v=4" width="38px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">学习spring-boot</h4>
+                        快速精通spring-boot<br>
+                    <span style="font-size:12px;font-weight: normal;color: #999 ">2个回复 31次浏览 1小时前</span>
+                </div>
+            </div>
+            <div class="media" th:each="questions:${question}">
+                <div class="media-left" >
+                    <a href="#">
+                        <img class="img-circle" th:src="${questions.user.getAvatar_url()}" width="38px">
+                    </a>
+                </div>
+                <div class="media-body" style="overflow:hidden;text-overflow: ellipsis;white-space:nowrap;max-width: 500px">
+                    <h4 class="media-heading" th:text="${questions.title}"></h4>
+                    <span  th:text="${questions.description}"></span><br>
+                    <span style="font-size:12px;font-weight: normal;color: #999 "><span th:text="${questions.comment_count}"></span>个回复 <span th:text="${questions.view_count}"></span>次浏览 <span th:text="${#dates.format(questions.gmt_create,'yy MM dd')}"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3><hr>
+            • 问题标题: 请用精简的语言描述您发布的问题，不超过25字 <br>
+            • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料 <br>
+            • 选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字 <br>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

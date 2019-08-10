@@ -3,17 +3,22 @@ package com.qin.community.controller;
 import com.qin.community.Provider.GitHubProvider;
 import com.qin.community.dto.AccessTokenDto;
 import com.qin.community.dto.GithubUser;
+import com.qin.community.dto.QuestionDTO;
 import com.qin.community.mapper.UserMapper;
+import com.qin.community.model.Question;
 import com.qin.community.model.User;
+import com.qin.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -36,6 +41,8 @@ public class AutorizeController {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private QuestionService questionService;
 
     @GetMapping("/callback")
     public String callBack(@RequestParam(name = "code") String code,
@@ -54,6 +61,7 @@ public class AutorizeController {
             User user = new User();
             String token = UUID.randomUUID().toString();
             user.setToken(token);
+            user.setAvatar_url(githubUser.getAvatar_url());
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
@@ -66,7 +74,7 @@ public class AutorizeController {
         }
     }
     @GetMapping("/")
-    public String index(HttpServletRequest request){
+    public String index(HttpServletRequest request, Model model){
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if ("token".equals(cookie.getName())){
@@ -78,6 +86,8 @@ public class AutorizeController {
                 break;
             }
         }
+        List<QuestionDTO>questionList=questionService.list();
+        model.addAttribute("question",questionList);
         return "index";
     }
 }

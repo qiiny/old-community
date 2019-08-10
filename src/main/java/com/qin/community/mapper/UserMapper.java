@@ -21,7 +21,7 @@ public interface UserMapper {
      * 登陆成功往数据库写入数据
      * @param user
      */
-    @Insert("INSERT INTO \"PUBLIC\".\"USER\" (\"ACCOUNT_ID\", \"NAME\", \"TOKEN\", \"GMT_CREATE\", \"GMT_MODIFIED\") VALUES (#{accountId}, #{name}, #{token}, #{gmtCreate}, #{gmtModified})")
+    @Insert("INSERT INTO \"PUBLIC\".\"USER\" (\"ACCOUNT_ID\", \"NAME\", \"TOKEN\", \"GMT_CREATE\", \"GMT_MODIFIED\",\"AVATAR_URL\") VALUES (#{accountId}, #{name}, #{token}, #{gmtCreate}, #{gmtModified},#{avatar_url})")
    void insert (User user);
 
     /**
@@ -31,4 +31,12 @@ public interface UserMapper {
      */
     @Select("select * from user where token=#{token}")
     User findToken(@Param("token") String token);
+
+    /**
+     * 根据ID查找用户
+     * @param id
+     * @return
+     */
+    @Select("select * from user where id=#{id}")
+    User findById(@Param("id") Integer id);
 }
